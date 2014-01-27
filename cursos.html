@@ -1,0 +1,211 @@
+<head>
+  <title>group@course - Mantente informado. </title>
+  <link rel="stylesheet" type="text/css" href="/bootstrap.min.css" />
+  
+  <link rel="stylesheet" type="text/css" href="/modding.css" />
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+ </head>
+ 
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">{{> imageuser}}</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">{{loginButtons}}</a>
+  </div>
+</nav>
+
+  <div class="container" id="main">
+    {{#if currentUser}}
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 menu" >
+        <div class="row" style="margin-right:0px;">
+          <div class="col-xs-12 col-sm-12" >
+            <div class="panel-group" id="accordion" >
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title" >
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Administración</a>
+                  </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    {{> addmateria}}
+                    <hr />
+                    {{> newcurso}}
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                      Cursos
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                    {{> favorites}}
+                    <hr />
+                    {{> listcursos}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-8" >
+        <div class="row datathread-row" >
+            {{> datathread}}
+        </div>
+        <div class="row">
+            {{> newpost}}
+        </div>
+      </div>
+
+    </div>
+   
+    {{/if}}
+    {{#unless currentUser}}
+      {{> banner}}
+    {{/unless}}
+  </div>
+</body>
+
+<template name="banner">
+    <div class="container">
+        <div class="row">
+            <div class="span6">
+                <div class="well">
+                    <h4>Registrese via twitter para continuar.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="datathread">
+  
+  {{#if posts}}
+  <div class="input-group datathread-container">
+    
+      <div class="datathread-title post-body">{{thread.nombre}}<span class="metadata">({{thread.numero}})</span><span class="pull-right">
+
+      {{#if isfav}}
+        <span class="glyphicon glyphicon-star unfav" style="color:yellow" data-thread="{{thread._id}}" />
+      {{/if}}
+      {{#unless isfav}}
+        <span class="glyphicon glyphicon-star-empty fav" data-thread="{{thread._id}}" />
+      {{/unless}}
+
+      </div>
+
+      <div class="arrayposts">
+      {{#each posts}}
+        <div class="media post-body elems">
+          <span class="pull-left"> <!-- AVATAR -->
+            <img class="media-object avatar" src="{{user.imageUrl}}">
+          </span>
+          <span class="pull-right"> <!-- UPVOTE/DOWNVOTE -->
+            {{dislikes.length}} <span class="glyphicon glyphicon-thumbs-down downvote"/> <span class="glyphicon glyphicon-thumbs-up upvote"/> {{likes.length}}
+          </span>
+          <div class="media-body">
+            <h4 class="media-heading"><strong>{{user.name}}</strong><span class="metadata"> dijo:</span></h4>
+            <p class="text-post">{{{text}}}</p>
+          </div>
+          <span class="pull-right" href="#">
+            <span class="metadata">{{i18ntime date}} {{i18ndate date}}</span>
+          </span>
+        </div>
+      {{/each}}
+      </div>
+  </div>
+  {{/if}}
+  
+</template>
+
+<template name="listcursos">
+  {{#if cursos}}
+    <h5>Cursos</h5>
+    <div class="visible-xs input-group" >
+      <select class="form-control cursos-item actual-item select-item">
+        {{#each cursos}}
+          <option data-id="{{_id}}">{{nombre}} - {{numero}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <ul class="nav nav-pills nav-stacked actual-item select-item hidden-xs" >
+    {{#each cursos}}
+      <li>
+        <a href="#" class="cursos-item" id="{{_id}}"> <span class="badge pull-right"> {{numero}}</span> {{nombre}} </a>
+      </li>
+    {{/each}}
+    </ul>
+  {{/if}}
+  {{#unless cursos}}
+      No hay cursos guardados.
+  {{/unless}}
+</template>
+
+<template name="addmateria">
+  <div class="input-group addmateria-container">
+    <input type="text" placeholder="Nueva materia" class="form-control" id="materiaText" />
+    <span class="input-group-addon btn add-materia">Agregar</span>
+  </div>
+</template>
+
+<template name="newcurso">
+  {{#if materias}}
+  
+    <div class="input-group newcurso-container" >
+      <select id="materiaSeleccionada" class="form-control" style="margin: 5px 0px;" id="materiaSeleccionada" >
+        {{#each materias}}
+          <option>{{nombre}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="input-group" style="margin: 5px 0px;">
+      <input type="text" placeholder="Nuevo Curso" class="form-control" id="numeroCurso">
+      <span class="input-group-addon btn add-curso">Agregar</span>
+    </div>
+  {{/if}}
+  {{#unless materias}}
+      No ha materias guardadas. Por favor, cree una e intente nuevamente.
+  {{/unless}}
+</template>
+<template name="newpost">
+  <div class="input-group newpost-container" >
+    <div class="media post-body">
+       <div class="media-body">
+        <div class="input-group" style="margin: 5px 0px;">
+          <textarea class="form-control post-new-text" name="wrotepost" id="wrotepost" placeholder="Escriba aqui su post..." />
+          <span class="input-group-addon add-post " >Nuevo post</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<template name="imageuser">
+ <p><img src='{{url}}' class="avatar" /> {{screenName}}</p>
+</template>
+
+<template name="favorites">
+  {{#if cursos}}
+    <h5>Favoritos</h5>
+    <div class="input-group" >
+      <select class="form-control cursos-item actual-item select-item">
+          <option> -- Ninguno -- </option>
+        {{#each cursos}}
+          <option data-id="{{_id}}">{{nombre}} - {{numero}}</option>
+        {{/each}}
+      </select>
+  </div>
+  {{/if}}
+</template>

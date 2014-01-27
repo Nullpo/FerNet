@@ -1,0 +1,220 @@
+body{
+	background: url(/img/background.jpg) no-repeat center center fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+  	padding-top:56px
+}
+
+.tituloNota{
+	font-weight: bold;
+	margin-top: 5px;
+	min-height: 40px;
+}
+.cuerpoNota{
+	font-size: 10px;
+	min-height: 70px;
+
+}
+.categoria{
+	margin-top: -20px;
+	margin-left: 2px;
+	width: 300px;
+	padding-left: 5px;
+	color: black;
+	font-weight: bold;
+	position: absolute;
+	background-color: #74DF00;
+	opacity: 0.6;
+	
+}
+
+.thread{
+	background-color: #adadad;
+	border-radius: 4px;
+	padding: 1%;
+}
+
+.msj{
+	background-color: #adadad;
+	border-radius: 4px 4px 0px 0px;
+}
+
+.inp{
+	width: 50%;
+	resize:none;
+	width: 100%;	
+	border-radius: 6px;
+	border-color:none;
+
+}
+
+.menu {
+	overflow:auto;
+	max-height:600px;
+}
+
+.modInner{
+	background-color: white;
+	border: 0px solid white;
+}
+.modMenu{
+	border: 0px solid white;
+	background-color: white;
+}
+.text-post {
+	text-align: justify;
+}
+
+.post-body {
+	background-color: white;
+	padding: 8px;
+	border-radius: 5px;
+	width:100%;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.post-new-text {
+	rows:3;
+	margin-bottom:10px;
+}
+
+.input-group-addon.add-post,
+.input-group-addon.add-materia,
+.input-group-addon.add-curso
+{
+	color:black;
+	font-weight: bold;
+	background-color:#AFA1A9;
+}
+
+.input-group-addon.add-post:hover,
+.input-group-addon.add-materia:hover,
+.input-group-addon.add-curso:hover {
+	color:black;
+	font-weight: bold;
+	background-color:#F6D798;
+}
+ 
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: transparent;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar
+{
+	border-radius: 10px;
+	width: 6px;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #AFA1A9;	
+}
+.datathread-container{
+  	margin: 5px 0px; width:100%;padding-left: 10px;padding-right: 36px;
+}
+
+.datathread-container .media.post-body{
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
+
+.arrayposts > .media.post-body{
+	border-radius: 0px;
+	margin-bottom:0px;
+	border-bottom: 1px solid #DDD;
+	padding-left:15px;
+	padding-right:15px;
+	padding-top:15px;
+}
+
+
+.datathread-title {
+	background-color:white;
+	font-size: 1.6em;
+	text-align: center;
+	font-weight: bold;
+	border-bottom: 1px solid #DDD;
+}
+
+.datathread-title.post-body {
+	margin-bottom: 0px;
+	border-radius: 0px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.datathread-title.post-body .pull-left {
+	text-align: center;
+}
+
+.metadata{
+	color:gray;
+	font-size: 0.8em;
+}
+
+.addmateria-container {
+	margin: 5px 0px;
+}
+
+.newcurso-container {
+	margin: 5px 0px;width:100%
+}
+
+.newpost-container {
+	margin: 5px 0px; 
+	width:100%;
+	padding-left: 10px;
+	padding-right: 36px;
+}
+
+
+img.media-object.avatar {
+	border-radius: 5px;
+	width:48px;
+	margin-right: 10px;
+}
+
+span.upvote {
+	color:green;
+}
+
+span.downvote {
+	color:red;
+}
+
+@media (max-width: 767px) { /* XS */
+  .menu {
+  	margin-top:auto;
+  	max-height:auto;
+  }
+  .datathread-row {
+  	
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) { /* SM */
+  .datathread-row {
+  	max-height: 600px;overflow-y: auto;overflow-x:none
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) { /* MD */
+  .datathread-row {
+  	max-height: 600px;overflow-y: auto;overflow-x:none
+  }
+}
+
+@media (min-width: 1200px) { /* LG */
+  .datathread-row {
+  	max-height: 600px;overflow-y: auto;overflow-x:none
+  }
+}
