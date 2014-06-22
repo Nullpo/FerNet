@@ -1,33 +1,18 @@
-
-	Subjects = new Meteor.Collection("subjects");
-    Cursos = new Meteor.Collection("cursos");
+	UserData = new Meteor.Collection("UserData");
+    Courses = new Meteor.Collection("courses");
     Posts = new Meteor.Collection("posts");
-    UserData = new Meteor.Collection("UserData");
-
-	Handlebars.registerHelper('i18ndatetime', function(fecha) {
-    	return UsuarioHelper.getI18nDateTime(fecha);
-  	});
-
-	Handlebars.registerHelper('i18ndate', function(fecha) {
-    	return UsuarioHelper.getI18nDate(fecha);
-  	});
-
-	Handlebars.registerHelper('i18ntime', function(fecha) {
-    	return UsuarioHelper.getI18nTime(fecha);
-  	});
-
-
-
-  	Template.favorites.cursos = function(){
+	Subjects = new Meteor.Collection("subjects");
+	
+	Template.favorites.courses = function(){
   		var elems = UserData.findOne({user:Meteor.user()._id});
   		if(elems)
-  			return Cursos.find({_id: {$in: elems.favs } });
+  			return Courses.find({_id: {$in: elems.favs } });
   		else
   			return null;
 	}
 
-    Template.listcursos.cursos = function(){
-    	return Cursos.find({},{sort:{'submittedOn':-1}});
+    Template.listcourses.courses = function(){
+    	return Courses.find({},{sort:{'submittedOn':-1}});
     }
 
 	Template.newcurso.materias = function(){
@@ -39,13 +24,11 @@
 		var user = UserData.findOne({user:Meteor.user()._id})
 		if(user == null)
 			return false;
-		return user.favs.indexOf(thread) != -1;
-
-		
+		return user.favs.indexOf(thread) != -1;		
 	};
 
 	Template.datathread.posts = function(){
-		var thread = Cursos.findOne({_id: Session.get("selectedThread")});
+		var thread = Courses.findOne({_id: Session.get("selectedThread")});
 		if(thread){
 			var posts = Posts.find({_id:{"$in": thread.posts }},{sort:{'date':1}});
 			return (posts)
@@ -54,11 +37,9 @@
 	}
 
 	Template.datathread.thread = function(){
-		var thread = Cursos.findOne({_id: Session.get("selectedThread")});
+		var thread = Courses.findOne({_id: Session.get("selectedThread")});
 		return thread;
 	}
-
-	
 
 	Template.imageuser.url = function(){
 		if(Meteor.user())
@@ -82,7 +63,7 @@
 		}
 	})
 
-	Template.listcursos.events({
+	Template.listcursoslistcursos.events({
 		'click .cursos-item': function(event){
 			if(this._id){
 				Session.set("selectedThread",this._id);
@@ -91,7 +72,6 @@
 			}
 		}
 	})
-
 
 	Template.addmateria.events({
 	    'click span.add-materia' : function(event){
@@ -123,7 +103,6 @@
 	    }
 	});
 
-
 	Template.newpost.events({
 		'click span.add-post' : function(event){
 			var t = Session.get("selectedThread");
@@ -143,6 +122,7 @@
 			)
 		}
 	})
+	
 	Template.datathread.events({
 		'click .downvote' : function(event){
 			Meteor.call("downvote",{post:this, user: Meteor.user()});
@@ -157,7 +137,22 @@
 			Meteor.call("unfav", {thread:$(".unfav").data("thread"), user: Meteor.user()._id});
 		}
 	})
+	
+	// Registrar todos los helpers de Handlebars.
+		
+	Handlebars.registerHelper('i18ndatetime', function(fecha) {
+		return UsuarioHelper.getI18nDateTime(fecha);
+	});
 
+	Handlebars.registerHelper('i18ndate', function(fecha) {
+		return UsuarioHelper.getI18nDate(fecha);
+	});
+
+	Handlebars.registerHelper('i18ntime', function(fecha) {
+		return UsuarioHelper.getI18nTime(fecha);
+	});
+	
+	// Usuario Helper functions. 
 	UsuarioHelper = {
 		getUser : function(){
 			return 	{
