@@ -63,7 +63,7 @@
 		}
 	})
 
-	Template.courselist.events({({
+	Template.courselist.events({
 		'click .cursos-item': function(event){
 			if(this._id){
 				Session.set("selectedThread",this._id);
@@ -74,7 +74,7 @@
 	})
 
 	Template.addsubject.events({
-	    'click span.add-materia' : function(event){
+	    'click span.add-subject' : function(event){
 	        event.preventDefault();
 	        var subjectname = document.getElementById("subjectText").value;
 	        Meteor.call("addSubject",subjectname,function(error , id){
