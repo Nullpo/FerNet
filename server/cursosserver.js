@@ -21,7 +21,7 @@
     });
 
     Meteor.methods({
-     addCurso: function(param) {
+     addCourse: function(param) {
         var courseNumber = param.numero;
         var subjectName = param.nombre;
         var postId = new Meteor.Collection.ObjectID();
@@ -50,7 +50,7 @@
 
         return courseId;
      },
-     addMateria: function(subjectName) {
+     addSubject: function(subjectName) {
         console.log("Generando la materia" + subjectName);
         var id = Subjects.insert({
             'nombre': subjectName

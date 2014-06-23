@@ -11,11 +11,11 @@
   			return null;
 	}
 
-    Template.listcourses.courses = function(){
+    Template.courselist.courses = function(){
     	return Courses.find({},{sort:{'submittedOn':-1}});
     }
 
-	Template.newcurso.materias = function(){
+	Template.newcourse.materias = function(){
 	    return Subjects.find({},{sort:{'submittedOn':-1}});
 	};
 
@@ -63,7 +63,7 @@
 		}
 	})
 
-	Template.listcursoslistcursos.events({
+	Template.courselist.events({({
 		'click .cursos-item': function(event){
 			if(this._id){
 				Session.set("selectedThread",this._id);
@@ -76,28 +76,28 @@
 	Template.addmateria.events({
 	    'click span.add-materia' : function(event){
 	        event.preventDefault();
-	        var nombremateria = document.getElementById("materiaText").value;
-	        Meteor.call("addMateria",nombremateria,function(error , id){
+	        var subjectname = document.getElementById("materiaText").value;
+	        Meteor.call("addMateria",subjectname,function(error , id){
 	          console.log('Curso agregado con el id Id .. '+id);
 	        });
 	        document.getElementById("materiaText").value = "";
 	    },
 	});
 
-	Template.newcurso.events({
+	Template.newcourse.events({
 		'click span.add-curso' : function(event){
 	    	event.preventDefault();
 	    	console.log("mellamo");
-	    	var nombremateria = document.getElementById("materiaSeleccionada").value;
-	    	var numerocurso = document.getElementById("numeroCurso").value;
+	    	var subjectname = document.getElementById("materiaSeleccionada").value;
+	    	var coursenumber = document.getElementById("coursenumber").value;
 	    	Meteor.call("addCurso", {
 	    		"date": new Date(), 
-	    		"nombre":nombremateria,
-	    		"numero":numerocurso
+	    		"nombre":subjectname,
+	    		"numero":coursenumber
 	    		,"user":UsuarioHelper.getUser()}, 
 	    		function(error,id){
 	          		console.log('Curso agregado con el id Id .. '+id);
-	          		$("#numeroCurso").value = "";
+	          		$("#coursenumber").value = "";
 	        	}
 	        );
 	    }

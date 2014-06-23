@@ -34,9 +34,9 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse">
                   <div class="panel-body">
-                    {{> addmateria}}
+                    {{> addSubject}}
                     <hr />
-                    {{> newcurso}}
+                    {{> newcourse}}
                   </div>
                 </div>
               </div>
@@ -52,7 +52,7 @@
                   <div class="panel-body">
                     {{> favorites}}
                     <hr />
-                    {{> listcursos}}
+                    {{> courselist}}
                   </div>
                 </div>
               </div>
@@ -130,7 +130,7 @@
   
 </template>
 
-<template name="listcursos">
+<template name="courselist">
   {{#if cursos}}
     <h5>Cursos</h5>
     <div class="visible-xs input-group" >
@@ -154,25 +154,25 @@
   {{/unless}}
 </template>
 
-<template name="addmateria">
-  <div class="input-group addmateria-container">
-    <input type="text" placeholder="Nueva materia" class="form-control" id="materiaText" />
+<template name="addsubject">
+  <div class="input-group addsubject-container">
+    <input type="text" placeholder="Nueva materia" class="form-control" id="subjectText" />
     <span class="input-group-addon btn add-materia">Agregar</span>
   </div>
 </template>
 
-<template name="newcurso">
+<template name="newcourse">
   {{#if materias}}
   
-    <div class="input-group newcurso-container" >
-      <select id="materiaSeleccionada" class="form-control" style="margin: 5px 0px;" id="materiaSeleccionada" >
+    <div class="input-group newcourse-container" >
+      <select id="selectedSubject" class="form-control" style="margin: 5px 0px;" id="selectedSubject" >
         {{#each materias}}
           <option>{{nombre}}</option>
         {{/each}}
       </select>
     </div>
     <div class="input-group" style="margin: 5px 0px;">
-      <input type="text" placeholder="Nuevo Curso" class="form-control" id="numeroCurso">
+      <input type="text" placeholder="Nuevo Curso" class="form-control" id="courseNumber">
       <span class="input-group-addon btn add-curso">Agregar</span>
     </div>
   {{/if}}
