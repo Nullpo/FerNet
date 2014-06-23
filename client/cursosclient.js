@@ -15,7 +15,7 @@
     	return Courses.find({},{sort:{'submittedOn':-1}});
     }
 
-	Template.newcourse.materias = function(){
+	Template.newcourse.subjects = function(){
 	    return Subjects.find({},{sort:{'submittedOn':-1}});
 	};
 
@@ -73,27 +73,27 @@
 		}
 	})
 
-	Template.addmateria.events({
+	Template.addsubject.events({
 	    'click span.add-materia' : function(event){
 	        event.preventDefault();
-	        var subjectname = document.getElementById("materiaText").value;
-	        Meteor.call("addMateria",subjectname,function(error , id){
+	        var subjectname = document.getElementById("subjectText").value;
+	        Meteor.call("addSubject",subjectname,function(error , id){
 	          console.log('Curso agregado con el id Id .. '+id);
 	        });
-	        document.getElementById("materiaText").value = "";
+	        document.getElementById("subjectText").value = "";
 	    },
 	});
 
 	Template.newcourse.events({
-		'click span.add-curso' : function(event){
+		'click span.add-course' : function(event){
 	    	event.preventDefault();
 	    	console.log("mellamo");
-	    	var subjectname = document.getElementById("materiaSeleccionada").value;
+	    	var subjectname = document.getElementById("selectedSubject").value;
 	    	var coursenumber = document.getElementById("coursenumber").value;
-	    	Meteor.call("addCurso", {
+	    	Meteor.call("addCourse", {
 	    		"date": new Date(), 
-	    		"nombre":subjectname,
-	    		"numero":coursenumber
+	    		"subjectName":subjectname,
+	    		"number":coursenumber
 	    		,"user":UsuarioHelper.getUser()}, 
 	    		function(error,id){
 	          		console.log('Curso agregado con el id Id .. '+id);
