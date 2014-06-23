@@ -95,7 +95,7 @@
   {{#if posts}}
   <div class="input-group datathread-container">
     
-      <div class="datathread-title post-body">{{thread.name}}<span class="metadata">({{thread.numero}})</span><span class="pull-right">
+      <div class="datathread-title post-body">{{thread.name}}<span class="metadata">({{thread.number}})</span><span class="pull-right">
 
       {{#if isfav}}
         <span class="glyphicon glyphicon-star unfav" style="color:yellow" data-thread="{{thread._id}}" />
@@ -136,7 +136,7 @@
     <div class="visible-xs input-group" >
       <select class="form-control cursos-item actual-item select-item">
         {{#each courses}}
-          <option data-id="{{_id}}">{{subjectName}} - {{numero}}</option>
+          <option data-id="{{_id}}">{{subjectName}} - {{number}}</option>
         {{/each}}
       </select>
     </div>
@@ -144,7 +144,7 @@
     <ul class="nav nav-pills nav-stacked actual-item select-item hidden-xs" >
     {{#each courses}}
       <li>
-        <a href="#" class="cursos-item" id="{{_id}}"> <span class="badge pull-right"> {{numero}}</span> {{subjectName}} </a>
+        <a href="#" class="cursos-item" id="{{_id}}"> <span class="badge pull-right"> {{number}}</span> {{subjectName}} </a>
       </li>
     {{/each}}
     </ul>
@@ -157,7 +157,7 @@
 <template name="addsubject">
   <div class="input-group addsubject-container">
     <input type="text" placeholder="Nueva materia" class="form-control" id="subjectText" />
-    <span class="input-group-addon btn add-materia">Agregar</span>
+    <span class="input-group-addon btn add-subject">Agregar</span>
   </div>
 </template>
 
@@ -203,7 +203,7 @@
       <select class="form-control cursos-item actual-item select-item">
           <option> -- Ninguno -- </option>
         {{#each courses}}
-          <option data-id="{{_id}}">{{subjectName}} - {{numero}}</option>
+          <option data-id="{{_id}}">{{subjectName}} - {{number}}</option>
         {{/each}}
       </select>
   </div>

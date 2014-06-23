@@ -22,14 +22,14 @@
 
     Meteor.methods({
      addCourse: function(param) {
-        var courseNumber = param.numero;
-        var subjectName = param.nombre;
+        var courseNumber = param.number;
+        var subjectName = param.name;
         var postId = new Meteor.Collection.ObjectID();
 
         console.log("Generando el post  del usuario " + param.user);
         var postId = Posts.insert({
                 "id": postId._str,
-                "text": "Hilo para el curso: (" + param.numero + ") " + param.nombre,
+                "text": "Hilo para el curso: (" + param.number + ") " + param.name,
                 "user": param.user,
                 "date": param.date,
                 "order":postId.getTimestamp(),
@@ -40,8 +40,8 @@
 
         console.log("Generando el curso " + courseNumber + " de la materia " + subjectName );
         var courseId = Courses.insert({
-            'numero' : courseNumber,
-            'nombre' : subjectName,
+            'number' : courseNumber,
+            'name' : subjectName,
             'submittedOn': new Date(),
             'submittedBy' : Meteor.userId(),
             'posts': [postId] 
@@ -53,7 +53,7 @@
      addSubject: function(subjectName) {
         console.log("Generando la materia" + subjectName);
         var id = Subjects.insert({
-            'nombre': subjectName
+            'name': subjectName
         });
         return id;
      },
