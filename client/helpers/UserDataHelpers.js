@@ -4,7 +4,7 @@
 			var objuser = Meteor.user();
 			var usr = {
 						"id" : objuser._id,
-						"name": objuser.profile.name,
+						"name": objuser.profile? objuser.profile.name : objuser.emails[0].address
 					};
 
 			if(objuser.services.twitter){
@@ -17,7 +17,7 @@
 			} else if(objuser.services.facebook){
 				usr["imageUrl"] = "http://graph.facebook.com/"+objuser.services.facebook.id+"/picture?type=square"
 			} else {
-				usr["imageUrl"] = UsuarioHelper._getgravatar(objuser.profile.name);
+				usr["imageUrl"] = UsuarioHelper._getgravatar(usr.name);
 			}
 			return usr;
 		},
