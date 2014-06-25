@@ -37,9 +37,9 @@
 		return null;
 	}
 
-	Template.datathread.thread = function(){
-		var thread = Cursos.findOne({_id: Session.get("currentThread")});
-		return thread;
+	Template.datathread.course = function(){
+		var course = Courses.findOne({_id: Session.get("currentThread")});
+		return course;
 	}
 
 	Template.newpost.currentThread = function(){
@@ -103,7 +103,7 @@
 	    		,"user":UsuarioHelper.getUser()}, 
 	    		function(error,id){
 	          		console.log("Nuevo curso. "+(error? "Error: " + error : "" ) + " - El id es: " + id);
-	          		document.getElementById("coursenNumber").value = "";
+	          		document.getElementById("courseNumber").value = "";
 	        	}
 	        );
 	    }

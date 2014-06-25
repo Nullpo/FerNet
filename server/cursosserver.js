@@ -5,7 +5,7 @@
 
     Meteor.startup(function() {
         return Meteor.methods({
-          removeAllPosts: function() {
+          removeAllCourses: function() {
             return Courses.remove({});
           },
           removeAllSubjects: function() {
@@ -14,22 +14,23 @@
           removeAllFavs: function() {
             return UserData.remove({});
           },
-          removeAllposts: function() {
+          removeAllPosts: function() {
             return Posts.remove({});
-          }
+          },
+
         });
     });
 
     Meteor.methods({
      addCourse: function(param) {
         var courseNumber = param.number;
-        var subjectName = param.name;
+        var subjectName = param.subjectName;
         var postId = new Meteor.Collection.ObjectID();
 
         console.log("Generando el post  del usuario " + param.user);
         var postId = Posts.insert({
                 "id": postId._str,
-                "text": "Hilo para el curso: (" + param.number + ") " + param.name,
+                "text": "Hilo para el curso: (" + param.number + ") " + param.subjectName,
                 "user": param.user,
                 "date": param.date,
                 "order":postId.getTimestamp(),
