@@ -18,7 +18,7 @@
   </div>
   <div class="navbar-right" >
     <form class="navbar-form navbar-left" >
-      <a class="navbar-brand" href="#">{{loginButtons}}</a>
+      <a class="navbar-brand" href="#">{{> loginButtons}}</a>
     </form>
   </div>
 
@@ -104,12 +104,12 @@
       <div class="datathread-title post-body">{{course.name}}<span class="metadata"> &nbsp; ({{course.number}})</span><span class="pull-right">
 
       {{#if isfav}}
-        <span class="glyphicon glyphicon-star unfav" style="color:yellow" data-course="{{course._id}}" />
+        <span class="glyphicon glyphicon-star unfav" style="color:yellow" data-course="{{getId course}}"></span>
       {{/if}}
       {{#unless isfav}}
-        <span class="glyphicon glyphicon-star-empty fav" data-course="{{course._id}}" />
+        <span class="glyphicon glyphicon-star-empty fav" data-course="{{getId course}}"></span>
       {{/unless}}
-
+          </span>
       </div>
 
       <div class="arrayposts">
@@ -119,7 +119,9 @@
             <img class="media-object avatar" src="{{user.imageUrl}}">
           </span>
           <span class="pull-right"> <!-- UPVOTE/DOWNVOTE -->
-            {{dislikes.length}} <span class="glyphicon glyphicon-thumbs-down downvote"/> <span class="glyphicon glyphicon-thumbs-up upvote"/> {{likes.length}}
+            {{dislikes.length}}
+              <span class="glyphicon glyphicon-thumbs-down downvote"></span>
+              <span class="glyphicon glyphicon-thumbs-up upvote"></span> {{likes.length}}
           </span>
           <div class="media-body">
             <h4 class="media-heading"><strong>{{user.name}}</strong><span class="metadata"> dijo:</span></h4>
@@ -171,7 +173,7 @@
   {{#if subjects}}
   
     <div class="input-group newcourse-container" >
-      <select id="selectedSubject" class="form-control" style="margin: 5px 0px;" id="selectedSubject" >
+      <select id="selectedSubject" class="form-control" style="margin: 5px 0px;">
         {{#each subjects}}
           <option>{{name}}</option>
         {{/each}}
@@ -193,7 +195,7 @@
     <div class="media post-body">
        <div class="media-body">
         <div class="input-group" style="margin: 5px 0px;">
-          <textarea class="form-control post-new-text" name="wrotepost" id="wrotepost" placeholder="Escriba aqui su post..." />
+          <textarea class="form-control post-new-text" name="wrotepost" id="wrotepost" placeholder="Escriba aqui su post..."></textarea>
           <span class="input-group-addon add-post " >Nuevo post</span>
         </div>
       </div>
@@ -215,7 +217,7 @@
       <select class="form-control cursos-item actual-item select-item">
           <option> -- Ninguno -- </option>
         {{#each courses}}
-          <option data-id="{{_id}}">{{subjectName}} - {{number}}</option>
+          <option data-id="{{_id}}">{{name}} - {{number}}</option>
         {{/each}}
       </select>
   </div>
