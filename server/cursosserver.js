@@ -97,11 +97,11 @@
         var data = UserData.findOne({user:param.user});
         var resp = "";
         if (!data){
-            console.log("Creando y guardando favorito de " + data + " thread:" + param.thread)
-            resp = UserData.insert({user:param.user, favs:[param.thread]});
+            console.log("Creando y guardando favorito de " + data + " course:" + param.course)
+            resp = UserData.insert({user:param.user, favs:[param.course]});
         } else {
-            console.log("Guardando favorito de " + data + " thread:" + param.thread)
-            resp = UserData.update({_id:data._id}, {$addToSet: {favs : param.thread}});
+            console.log("Guardando favorito de " + data + " course:" + param.course)
+            resp = UserData.update({_id:data._id}, {$addToSet: {favs : param.course}});
         }
         console.log("resp: " + resp);
         return;

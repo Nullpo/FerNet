@@ -139,10 +139,10 @@
 			Meteor.call("upvote",{post:this, user: Meteor.user()});
 		},
 		'click .fav' : function(event){
-			Meteor.call("fav", {thread:$(".fav").data("thread"), user: Meteor.user()._id});
+			Meteor.call("fav", {course:$(".fav").data("course"), user: Meteor.user()._id});
 		},
 		'click .unfav' : function(event){
-			Meteor.call("unfav", {thread:$(".unfav").data("thread"), user: Meteor.user()._id});
+			Meteor.call("unfav", {course:$(".unfav").data("course"), user: Meteor.user()._id});
 		}
 	})
 	

@@ -104,10 +104,10 @@
       <div class="datathread-title post-body">{{course.name}}<span class="metadata"> &nbsp; ({{course.number}})</span><span class="pull-right">
 
       {{#if isfav}}
-        <span class="glyphicon glyphicon-star unfav" style="color:yellow" data-thread="{{thread._id}}" />
+        <span class="glyphicon glyphicon-star unfav" style="color:yellow" data-course="{{course._id}}" />
       {{/if}}
       {{#unless isfav}}
-        <span class="glyphicon glyphicon-star-empty fav" data-thread="{{thread._id}}" />
+        <span class="glyphicon glyphicon-star-empty fav" data-course="{{course._id}}" />
       {{/unless}}
 
       </div>
