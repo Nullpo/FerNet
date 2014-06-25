@@ -34,9 +34,9 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse">
                   <div class="panel-body">
-                    {{> addmateria}}
+                    {{> addSubject}}
                     <hr />
-                    {{> newcurso}}
+                    {{> newcourse}}
                   </div>
                 </div>
               </div>
@@ -52,7 +52,7 @@
                   <div class="panel-body">
                     {{> favorites}}
                     <hr />
-                    {{> listcursos}}
+                    {{> courselist}}
                   </div>
                 </div>
               </div>
@@ -95,7 +95,7 @@
   {{#if posts}}
   <div class="input-group datathread-container">
     
-      <div class="datathread-title post-body">{{thread.nombre}}<span class="metadata">({{thread.numero}})</span><span class="pull-right">
+      <div class="datathread-title post-body">{{thread.name}}<span class="metadata">({{thread.number}})</span><span class="pull-right">
 
       {{#if isfav}}
         <span class="glyphicon glyphicon-star unfav" style="color:yellow" data-thread="{{thread._id}}" />
@@ -130,54 +130,54 @@
   
 </template>
 
-<template name="listcursos">
-  {{#if cursos}}
+<template name="courselist">
+  {{#if courses}}
     <h5>Cursos</h5>
     <div class="visible-xs input-group" >
       <select class="form-control cursos-item actual-item select-item">
-        {{#each cursos}}
-          <option data-id="{{_id}}">{{nombre}} - {{numero}}</option>
+        {{#each courses}}
+          <option data-id="{{_id}}">{{subjectName}} - {{number}}</option>
         {{/each}}
       </select>
     </div>
 
     <ul class="nav nav-pills nav-stacked actual-item select-item hidden-xs" >
-    {{#each cursos}}
+    {{#each courses}}
       <li>
-        <a href="#" class="cursos-item" id="{{_id}}"> <span class="badge pull-right"> {{numero}}</span> {{nombre}} </a>
+        <a href="#" class="cursos-item" id="{{_id}}"> <span class="badge pull-right"> {{number}}</span> {{subjectName}} </a>
       </li>
     {{/each}}
     </ul>
   {{/if}}
-  {{#unless cursos}}
+  {{#unless courses}}
       No hay cursos guardados.
   {{/unless}}
 </template>
 
-<template name="addmateria">
-  <div class="input-group addmateria-container">
-    <input type="text" placeholder="Nueva materia" class="form-control" id="materiaText" />
-    <span class="input-group-addon btn add-materia">Agregar</span>
+<template name="addsubject">
+  <div class="input-group addsubject-container">
+    <input type="text" placeholder="Nueva materia" class="form-control" id="subjectText" />
+    <span class="input-group-addon btn add-subject">Agregar</span>
   </div>
 </template>
 
-<template name="newcurso">
-  {{#if materias}}
+<template name="newcourse">
+  {{#if subjects}}
   
-    <div class="input-group newcurso-container" >
-      <select id="materiaSeleccionada" class="form-control" style="margin: 5px 0px;" id="materiaSeleccionada" >
-        {{#each materias}}
-          <option>{{nombre}}</option>
+    <div class="input-group newcourse-container" >
+      <select id="selectedSubject" class="form-control" style="margin: 5px 0px;" id="selectedSubject" >
+        {{#each subjects}}
+          <option>{{subjectName}}</option>
         {{/each}}
       </select>
     </div>
     <div class="input-group" style="margin: 5px 0px;">
-      <input type="text" placeholder="Nuevo Curso" class="form-control" id="numeroCurso">
+      <input type="text" placeholder="Nuevo Curso" class="form-control" id="courseNumber">
       <span class="input-group-addon btn add-curso">Agregar</span>
     </div>
   {{/if}}
-  {{#unless materias}}
-      No ha materias guardadas. Por favor, cree una e intente nuevamente.
+  {{#unless subjects}}
+      No hay materias guardadas. Por favor, cree una e intente nuevamente.
   {{/unless}}
 </template>
 <template name="newpost">
@@ -197,13 +197,13 @@
 </template>
 
 <template name="favorites">
-  {{#if cursos}}
+  {{#if courses}}
     <h5>Favoritos</h5>
     <div class="input-group" >
       <select class="form-control cursos-item actual-item select-item">
           <option> -- Ninguno -- </option>
-        {{#each cursos}}
-          <option data-id="{{_id}}">{{nombre}} - {{numero}}</option>
+        {{#each courses}}
+          <option data-id="{{_id}}">{{subjectName}} - {{number}}</option>
         {{/each}}
       </select>
   </div>

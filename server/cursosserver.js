@@ -1,12 +1,12 @@
     Subjects = new Meteor.Collection("subjects");
-    Cursos = new Meteor.Collection("cursos");
+    Courses = new Meteor.Collection("courses");
     Posts = new Meteor.Collection("posts");
     UserData = new Meteor.Collection("UserData");
 
     Meteor.startup(function() {
         return Meteor.methods({
           removeAllPosts: function() {
-            return Cursos.remove({});
+            return Courses.remove({});
           },
           removeAllSubjects: function() {
             return Subjects.remove({});
@@ -21,15 +21,15 @@
     });
 
     Meteor.methods({
-     addCurso: function(param) {
-        var numeroCurso = param.numero;
-        var nombreMateria = param.nombre;
+     addCourse: function(param) {
+        var courseNumber = param.number;
+        var subjectName = param.name;
         var postId = new Meteor.Collection.ObjectID();
 
         console.log("Generando el post  del usuario " + param.user);
         var postId = Posts.insert({
                 "id": postId._str,
-                "text": "Hilo para el curso: (" + param.numero + ") " + param.nombre,
+                "text": "Hilo para el curso: (" + param.number + ") " + param.name,
                 "user": param.user,
                 "date": param.date,
                 "order":postId.getTimestamp(),
@@ -38,22 +38,22 @@
         });
         console.log("Post generado (" + postId + ")")
 
-        console.log("Generando el curso " + numeroCurso + " de la materia " + nombreMateria );
-        var cursoId = Cursos.insert({
-            'numero' : numeroCurso,
-            'nombre' : nombreMateria,
+        console.log("Generando el curso " + courseNumber + " de la materia " + subjectName );
+        var courseId = Courses.insert({
+            'number' : courseNumber,
+            'name' : subjectName,
             'submittedOn': new Date(),
             'submittedBy' : Meteor.userId(),
             'posts': [postId] 
         });
-        console.log("Curso generado (" + cursoId + ")")
+        console.log("Curso generado (" + courseId + ")")
 
-        return cursoId;
+        return courseId;
      },
-     addMateria: function(nombreMateria) {
-        console.log("Generando la materia" + nombreMateria);
+     addSubject: function(subjectName) {
+        console.log("Generando la materia" + subjectName);
         var id = Subjects.insert({
-            'nombre': nombreMateria
+            'name': subjectName
         });
         return id;
      },
@@ -75,7 +75,7 @@
                         
 
         console.log("Actualizando el curso: " + param.thread  )
-        var id = Cursos.update(param.thread,{ $addToSet: {posts:postId} });
+        var id = Courses.update(param.thread,{ $addToSet: {posts:postId} });
         console.log("Curso actualizado: " + id  )
 
         return id;
@@ -128,7 +128,6 @@
                 //.replace(/\[b\](.*)\[\/b\]/,"<b>$1</b>")
         }
     }
-
 
     if (typeof String.prototype.startsWith != 'function') {
       // see below for better implementation!
