@@ -6,8 +6,9 @@
 						"id" : objuser._id,
 						"name": objuser.profile? objuser.profile.name : objuser.emails[0].address
 					};
-
-			if(objuser.services.twitter){
+            if (!objuser.services){
+                usr["imageUrl"] = UsuarioHelper._getgravatar(usr.name);
+            } else if(objuser.services.twitter){
 				usr["imageUrl"] = objuser.services.twitter.profile_image_url;
 			} else if (objuser.services.google){
 				usr["imageUrl"] = "https://plus.google.com/s2/photos/profile/" + objuser.services.google.id + "?sz=100"
@@ -16,8 +17,6 @@
 				usr["imageUrl"] = UsuarioHelper._getgravatar(objuser.services.github.email);
 			} else if(objuser.services.facebook){
 				usr["imageUrl"] = "http://graph.facebook.com/"+objuser.services.facebook.id+"/picture?type=square"
-			} else {
-				usr["imageUrl"] = UsuarioHelper._getgravatar(usr.name);
 			}
 			return usr;
 		},
