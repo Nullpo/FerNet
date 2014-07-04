@@ -82,15 +82,41 @@
         return id;
      },
      upvote: function(param){
-        console.log("Upvote de " + param.user + " al post " + param.post )
-        var id = Posts.update({_id:param.post._id},{$addToSet: {likes:param.user}});
-        console.log("[OK] Upvote de " + param.user + " al post " + param.post )
+         
+        console.log("Upvote de " + param.user + " al post " + param.post );
+         
+        var dislikesList = param.post.dislikes;
+        var hasUserAlreadyVoted = false;
+        var id = -1;
+        
+        hasUserAlreadyVoted = dislikesList.filter(function(element){return element._id == param.user._id}).length > 0;
+        console.log(hasUserAlreadyVoted);
+                  
+        if(!hasUserAlreadyVoted)
+        {
+            id = Posts.update({_id:param.post._id},{$addToSet: {likes:param.user}});
+            console.log("[OK] Upvote de " + param.user + " al post " + param.post );
+        }
+         
         return id;
      },
      downvote: function(param){
-        console.log("Upvote de " + param.user + " al post " + param.post )
-        var id = Posts.update({_id:param.post._id},{$addToSet: {dislikes:param.user}});
-        console.log("[OK] Upvote de " + param.user + " al post " + param.post )
+         
+        console.log("Downvote de " + param.user + " al post " + param.post );
+         
+        var likesList = param.post.likes;
+        var hasUserAlreadyVoted = false;
+        var id = -1;
+         
+        hasUserAlreadyVoted = likesList.filter(function(element){return element._id == param.user._id}).length > 0 ;
+        console.log(hasUserAlreadyVoted);
+                  
+        if(!hasUserAlreadyVoted)
+        {
+            id = Posts.update({_id:param.post._id},{$addToSet: {dislikes:param.user}});
+            console.log("[OK] Upvote de " + param.user + " al post " + param.post );
+        }
+         
         return id;
      },
      fav : function(param){
