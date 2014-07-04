@@ -86,13 +86,12 @@
         console.log("Upvote de " + param.user + " al post " + param.post );
          
         var dislikesList = param.post.dislikes;
-        var hasUserAlreadyVoted = false;
+        var userAlreadyVoted = false;
         var id = -1;
         
-        hasUserAlreadyVoted = dislikesList.filter(function(element){return element._id == param.user._id}).length > 0;
-        console.log(hasUserAlreadyVoted);
+        userAlreadyVoted = dislikesList.filter(function(element){return element._id == param.user._id}).length > 0;
                   
-        if(!hasUserAlreadyVoted)
+        if(!userAlreadyVoted)
         {
             id = Posts.update({_id:param.post._id},{$addToSet: {likes:param.user}});
             console.log("[OK] Upvote de " + param.user + " al post " + param.post );
@@ -105,13 +104,12 @@
         console.log("Downvote de " + param.user + " al post " + param.post );
          
         var likesList = param.post.likes;
-        var hasUserAlreadyVoted = false;
+        var userAlreadyVoted = false;
         var id = -1;
-         
-        hasUserAlreadyVoted = likesList.filter(function(element){return element._id == param.user._id}).length > 0 ;
-        console.log(hasUserAlreadyVoted);
+ 
+        userAlreadyVoted = likesList.filter(function(element){return element._id == param.user._id}).length > 0 ;
                   
-        if(!hasUserAlreadyVoted)
+        if(!userAlreadyVoted)
         {
             id = Posts.update({_id:param.post._id},{$addToSet: {dislikes:param.user}});
             console.log("[OK] Upvote de " + param.user + " al post " + param.post );
