@@ -107,7 +107,7 @@
         return;
      },
      unfav : function(param){
-        var resp = UserData.update({user:param.user}, {$pull: {favs : param.thread}});
+        var resp = UserData.update({user:param.user}, {$pull: {favs : param.course}});
      }
     });
 
