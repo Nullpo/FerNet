@@ -168,6 +168,12 @@ body{
 	margin: 5px 0px;width:100%
 }
 
+.user-avatar-top  * {
+	display:inline;
+	width: 40px;
+	height: 40px;
+}
+
 #login-dropdown-list {
 	left:-96px;
 }
@@ -186,12 +192,8 @@ img.media-object.avatar {
 	margin-right: 10px;
 }
 
-span.upvote {
-	color:green;
-}
-
-span.downvote {
-	color:red;
+span.upvote, span.downvote {
+	color:blue;
 }
 
 @media (max-width: 767px) { /* XS */
