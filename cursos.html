@@ -18,7 +18,7 @@
   </div>
   <div class="navbar-right" >
     <form class="navbar-form navbar-left" >
-      <a class="navbar-brand" href="#">{{> loginButtons}}</a>
+      <a class="navbar-brand" href="#"><span class="user-avatar-top">{{> imageuser}}</span>{{> loginButtons}}</a>
     </form>
   </div>
 
@@ -32,7 +32,7 @@
           <div class="col-xs-12 col-sm-12" >
             <div class="panel-group" id="accordion" >
               <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading" style="margin-top:32px;">
                   <h4 class="panel-title" >
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Administración</a>
              	  </h4>
@@ -101,7 +101,7 @@
   {{#if posts}}
   <div class="input-group datathread-container">
     
-      <div class="datathread-title post-body">{{course.name}}<span class="metadata"> &nbsp; ({{course.number}})</span><span class="pull-right">
+      <div class="datathread-title post-body" style="margin-top:40px;">{{course.name}}<span class="metadata"> &nbsp; ({{course.number}})</span><span class="pull-right">
 
       {{#if isfav}}
         <span class="glyphicon glyphicon-star unfav" style="color:yellow;cursor:default" data-course="{{getId course}}"></span>
