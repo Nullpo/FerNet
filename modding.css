@@ -186,12 +186,8 @@ img.media-object.avatar {
 	margin-right: 10px;
 }
 
-span.upvote {
-	color:green;
-}
-
-span.downvote {
-	color:red;
+span.upvote, span.downvote {
+	color:blue;
 }
 
 @media (max-width: 767px) { /* XS */

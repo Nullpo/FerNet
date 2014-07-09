@@ -104,10 +104,10 @@
       <div class="datathread-title post-body">{{course.name}}<span class="metadata"> &nbsp; ({{course.number}})</span><span class="pull-right">
 
       {{#if isfav}}
-        <span class="glyphicon glyphicon-star unfav" style="color:yellow" data-course="{{getId course}}"></span>
+        <span class="glyphicon glyphicon-star unfav" style="color:yellow;cursor:default" data-course="{{getId course}}"></span>
       {{/if}}
       {{#unless isfav}}
-        <span class="glyphicon glyphicon-star-empty fav" data-course="{{getId course}}"></span>
+        <span class="glyphicon glyphicon-star fav" style="color:gray;cursor:default" data-course="{{getId course}}"></span>
       {{/unless}}
           </span>
       </div>
@@ -119,9 +119,10 @@
             <img class="media-object avatar" src="{{user.imageUrl}}">
           </span>
           <span class="pull-right"> <!-- UPVOTE/DOWNVOTE -->
-            {{dislikes.length}}
+			  <span class="badge" style="background-color:red;">{{dislikes.length}}</span>
               <span class="glyphicon glyphicon-thumbs-down downvote"></span>
-              <span class="glyphicon glyphicon-thumbs-up upvote"></span> {{likes.length}}
+              <span class="glyphicon glyphicon-thumbs-up upvote"></span> 
+			  <span class="badge" style="background-color:green;">{{likes.length}}</span>
           </span>
           <div class="media-body">
             <h4 class="media-heading"><strong>{{user.name}}</strong><span class="metadata"> dijo:</span></h4>
@@ -196,7 +197,7 @@
        <div class="media-body">
         <div class="input-group" style="margin: 5px 0px;">
           <textarea class="form-control post-new-text" name="wrotepost" id="wrotepost" placeholder="Escriba aqui su post..."></textarea>
-          <span class="input-group-addon add-post " >Nuevo post</span>
+          <span class="input-group-addon add-post" style="padding-left: 30px; padding-right: 30px;" ><span class="glyphicon glyphicon-envelope"></span></span>
         </div>
       </div>
     </div>
